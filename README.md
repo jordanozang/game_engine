@@ -7,6 +7,7 @@
 ## Features
 * Built to be fully cross-platform.The only runtime dependencies are SDL and OpenGL.The game folder is also fully portable within the filesystem.
 *Support for loading *.obj and *.mtl files, with per-face materials, rapidly thanks to tinyobjloader.
+
 ## Coming Soon
 *An importer for models that aren't in the game's native format.
 *Rigid body dynamics, celestial mechanics, parellelization of physics on the gpu
