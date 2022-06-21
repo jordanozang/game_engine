@@ -1,7 +1,7 @@
 # game\_engine
 
 ## Demo Controls
-* Navigation in space is with usual wasd controls and mouse to lool
+* Navigation in space is with usual wasd controls and mouse to look
 * Press esc to exit
 
 ## Features
