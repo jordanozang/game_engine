@@ -4,10 +4,17 @@ project(game_engine)
 
 if (WIN32)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/windows/)
+add_compile_definitions(BUILDDIR="bin/windows/game.exe")
+include_directories(lib/windows src include include/windows)
+link_directories(lib/windows src include include/windows )
 endif ()
 
 if(UNIX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/linux/)
+add_compile_definitions(BUILDDIR="bin/linux/game")
+include_directories(src include)
+link_directories(src include)
+add_compile_options('sdl2-config --libs --cflags)
 endif ()
 
 
@@ -17,18 +24,11 @@ endif ()
 add_executable(game src/main.cpp)
 
 if (WIN32)
-add_compile_definitions(BUILDDIR="bin/windows/game.exe")
-include_directories(lib/windows src include include/windows)
-link_directories(lib/windows src include include/windows )
 target_link_libraries(game SDL2 glew32 opengl32 winmm)
 endif ()
 
 if(UNIX)
-add_compile_definitions(BUILDDIR="bin/linux/game")
-include_directories(src include)
-link_directories(src include)
 target_link_libraries(game SDL2 GLEW GL)
-add_compile_options('sdl2-config --libs --cflags)
 endif ()
 
 
