@@ -1,12 +1,18 @@
 cmake_minimum_required(VERSION 3.10)
-
+include(FetchContent)
 project(game_engine)
+
+FetchContent_Declare(
+    sdl2-devel-vc 
+    URL "https://www.libsdl.org/release/SDL2-devel-2.0.22-VC.zip" 
+)
+FetchContent_MakeAvailable(sdl2-devel-vc)
 
 if (WIN32)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/windows/)
 add_compile_definitions(BUILDDIR="bin/windows/game.exe")
-include_directories(lib/windows src include include/windows)
-link_directories(lib/windows src include include/windows )
+include_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/include)
+link_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/lib/x64)
 endif ()
 
 if(UNIX)
@@ -14,7 +20,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/linux/)
 add_compile_definitions(BUILDDIR="bin/linux/game")
 include_directories(src include)
 link_directories(src include)
-add_compile_options('sdl2-config --libs --cflags)
 endif ()
 
 
@@ -24,15 +29,15 @@ endif ()
 add_executable(game src/main.cpp)
 
 if (WIN32)
+    include_directories(src include)
 target_link_libraries(game SDL2 glew32 opengl32 winmm)
 endif ()
 
 if(UNIX)
 target_link_libraries(game SDL2 GLEW GL)
+add_compile_options(lSDL2 I/usr/include/SDL2 D_REENTRANT)
 endif ()
 
 
-
-#add_compile_options(`/home/jordano/Desktop/game/lib/SDL2-2.0.22/x86_64-w64-mingw32/bin/sdl2-config --libs --cflags`)
 add_compile_options(mwindows -Dmain=SDL_main)
 

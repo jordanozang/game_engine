@@ -13,8 +13,13 @@
 //OpenGl and SDL
 #include "GL/glew.h"
 #define SDL_MAIN_HANDLED
+#ifdef __linux__
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
+#elif _WIN64
+#include "SDL.h"
+#include "SDL_opengl.h"
+#endif
 
 //utilities
 #include "stb_image.h"
@@ -49,7 +54,7 @@ int main(int argc, char *argv[]){
             chdir("..");
         i++;
     }
-
+ 
 
     game *game_main_instance = new game();
 
