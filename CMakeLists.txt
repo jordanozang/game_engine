@@ -33,14 +33,14 @@ FetchContent_MakeAvailable(sdl2-devel-vc glew-win32 stb-image-header-only tinyob
 if (WIN32)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/windows/)
 add_compile_definitions(BUILDDIR="bin/windows/game.exe")
-include_directories(src ${PROJECT_SOURCE_DIR}/build/_deps/glm-header-only-src/glm ${PROJECT_SOURCE_DIR}/build/_deps/tinyobjloader-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/stb-image-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/sdl2-devel-vc-src/include ${PROJECT_SOURCE_DIR}/build/_deps/glew-win32-src/include)
+include_directories(src ${PROJECT_SOURCE_DIR}/build/_deps/glm-header-only-src/ ${PROJECT_SOURCE_DIR}/build/_deps/tinyobjloader-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/stb-image-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/sdl2-devel-vc-src/include ${PROJECT_SOURCE_DIR}/build/_deps/glew-win32-src/include)
 link_directories(${PROJECT_SOURCE_DIR}/build/_deps/sdl2-devel-vc-src/lib/x64 ${PROJECT_SOURCE_DIR}/build/_deps/glew-win32-src/lib/Release/x64 ${PROJECT_SOURCE_DIR}/build/x64-Release/_deps/glew-win32-src/bin/Release/x64)
 endif ()
 
 if(UNIX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/linux/)
 add_compile_definitions(BUILDDIR="bin/linux/game")
-include_directories(src include ${PROJECT_SOURCE_DIR}/build/_deps/stb-image-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/tinyobjloader-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/glm-header-only-src/glm)
+include_directories(src include ${PROJECT_SOURCE_DIR}/build/_deps/stb-image-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/tinyobjloader-header-only-src ${PROJECT_SOURCE_DIR}/build/_deps/glm-header-only-src)
 link_directories(src include)
 endif ()
 
