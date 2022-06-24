@@ -7,18 +7,50 @@ class shader{
     public:
         unsigned int shader_program; 
 
-        void set3f(std::string name, float f1, float f2, float f3){
-            glUniform3f(glGetUniformLocation(shader_program, name.c_str()), f1, f2, f3);
+        void use() {
+            glUseProgram(shader_program);
         }
-        void setf(std::string name, float f1){
+        void set_uniform(std::string name, float f1) {
             glUniform1f(glGetUniformLocation(shader_program, name.c_str()), f1);
         }
-        void set1i(std::string name, int i1){
-            glUniform1i(glGetUniformLocation(shader_program, name.c_str()), i1);
+        void set_uniform(std::string name, float f1, float f2) {
+            glUniform2f(glGetUniformLocation(shader_program, name.c_str()), f1, f2);
+        }
+        void set_uniform(std::string name, float f1, float f2, float f3) {
+            glUniform3f(glGetUniformLocation(shader_program, name.c_str()), f1, f2, f3);
+        }
+        void set_uniform(std::string name, float f1, float f2, float f3, float f4) {
+            glUniform4f(glGetUniformLocation(shader_program, name.c_str()), f1, f2, f3, f4);
         }
 
-        void use(){
-            glUseProgram(shader_program);
+        void set_uniform(std::string name, int i1) {
+            glUniform1i(glGetUniformLocation(shader_program, name.c_str()), i1);
+        }
+        void set_uniform(std::string name, int i1, int i2) {
+            glUniform2i(glGetUniformLocation(shader_program, name.c_str()), i1, i2);
+        }
+        void set_uniform(std::string name, int i1, int i2, int i3) {
+            glUniform3i(glGetUniformLocation(shader_program, name.c_str()), i1, i2, i3);
+        }
+        void set_uniform(std::string name, int i1, int i2, int i3, int i4) {
+            glUniform4i(glGetUniformLocation(shader_program, name.c_str()), i1, i2, i3, i4);
+        }
+
+        void set_uniform(std::string name, unsigned int ui1) {
+            glUniform1ui(glGetUniformLocation(shader_program, name.c_str()), ui1);
+        }
+        void set_uniform(std::string name, unsigned int ui1, unsigned int ui2) {
+            glUniform2ui(glGetUniformLocation(shader_program, name.c_str()), ui1, ui2);
+        }
+        void set_uniform(std::string name, unsigned int ui1, unsigned int ui2, unsigned int ui3) {
+            glUniform3ui(glGetUniformLocation(shader_program, name.c_str()), ui1, ui2, ui3);
+        }
+        void set_uniform(std::string name, unsigned int ui1, unsigned int ui2, unsigned int ui3, unsigned int ui4) {
+            glUniform4ui(glGetUniformLocation(shader_program, name.c_str()), ui1, ui2, ui3, ui4);
+        }
+
+        void set_uniform(std::string name, int count, GLboolean transpose, glm::mat4  matrix) {//should count be int?
+            glUniformMatrix4fv(glGetUniformLocation(shader_program, name.c_str()), count, transpose, glm::value_ptr(matrix));
         }
 
         shader(std::string vertex_path, std::string fragment_path){
@@ -66,7 +98,9 @@ class shader{
             glDeleteShader(vertex_shader);
             glDeleteShader(fragment_shader);
         }
-
+        ~shader() {
+            glDeleteProgram(shader_program);
+        }
     private:
 
         void check_compile_errors(unsigned int shader_id, std::string type){
