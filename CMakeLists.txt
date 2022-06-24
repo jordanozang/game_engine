@@ -6,13 +6,20 @@ FetchContent_Declare(
     sdl2-devel-vc 
     URL "https://www.libsdl.org/release/SDL2-devel-2.0.22-VC.zip" 
 )
+
+FetchContent_Declare(
+    glew-win32
+    URL "https://sourceforge.net/projects/glew/files/latest/download"
+)
+
 FetchContent_MakeAvailable(sdl2-devel-vc)
+FetchContent_MakeAvailable(glew-win32)
 
 if (WIN32)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/windows/)
 add_compile_definitions(BUILDDIR="bin/windows/game.exe")
-include_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/include)
-link_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/lib/x64)
+include_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/include ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/glew-win32-src/include)
+link_directories(lib/windows src include include/windows ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/sdl2-devel-vc-src/lib/x64 ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/glew-win32-src/lib/Release/x64 ${PROJECT_SOURCE_DIR}/out/build/x64-Release/_deps/glew-win32-src/bin/Release/x64)
 endif ()
 
 if(UNIX)
