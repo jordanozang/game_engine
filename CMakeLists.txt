@@ -24,7 +24,6 @@ file(DOWNLOAD "https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
 
 file(DOWNLOAD "https://raw.githubusercontent.com/tinyobjloader/tinyobjloader/master/tiny_obj_loader.h" ${CMAKE_CURRENT_BINARY_DIR}/_deps/tinyobjloader/tiny_obj_loader.h)
 
-FetchContent_MakeAvailable(sdl2-devel-vc glew-win32)
 
 
 
@@ -35,6 +34,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/windows/)
 add_compile_definitions(BUILDDIR="bin/windows/game.exe")
 #add_compile_options(mwindows -Dmain=SDL_main)
 
+FetchContent_MakeAvailable(sdl2-devel-vc glew-win32)
 include_directories(${PROJECT_SOURCE_DIR}/build/_deps/sdl2-devel-vc-src/include ${PROJECT_SOURCE_DIR}/build/_deps/glew-win32-src/include)
 link_directories(${PROJECT_SOURCE_DIR}/build/_deps/sdl2-devel-vc-src/lib/x64 ${PROJECT_SOURCE_DIR}/build/_deps/glew-win32-src/lib/Release/x64 ${PROJECT_SOURCE_DIR}/build/x64-Release/_deps/glew-win32-src/bin/Release/x64)
 endif ()
