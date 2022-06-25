@@ -11,6 +11,7 @@
 * Rigid body dynamics, celestial mechanics, parellelization of physics on the gpu
 * A scene editor and a human-readable format for storing scene data
 * Continuous integration checking
+* Phong shading with support for multiple light sources soon and ray tracing later
 ## Libraries Used
 * GLEW
 * SDL2
